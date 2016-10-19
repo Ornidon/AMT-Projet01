@@ -1,7 +1,12 @@
 package com.mycompany.projet.web;
 
+import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +30,16 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+
+            ResultSet rs = MySQLUtility.doQuery("SELECT * FROM actors LIMIT 10", null);
+            while(rs.next())
+            {
+                System.out.println(rs.findColumn("first_name"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HelloServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.getRequestDispatcher("/WEB-INF/pages/hello.jsp").forward(request, response);
     }
     
