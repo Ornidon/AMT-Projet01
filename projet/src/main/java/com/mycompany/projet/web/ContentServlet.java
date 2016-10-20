@@ -5,8 +5,13 @@
  */
 package com.mycompany.projet.web;
 
+import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +22,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author Ornidon
  */
 public class ContentServlet extends HttpServlet {
-
+    
+        private final String ACTOR_QUERY = "SELECT first_name, last_name FROM actor\n"
+                                    + "    INNER JOIN film_actor AS fa\n"
+                                    + "        ON actor.actor_id = fa.actor_id\n"
+                                    + "    INNER JOIN film AS f\n"
+                                    + "        ON f.film_id = fa.film_id\n"
+                                    + "    WHERE f.title = ?";
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -28,7 +40,8 @@ public class ContentServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {       
+             
         request.getRequestDispatcher("/WEB-INF/pages/content.jsp").forward(request, response);
     }
 
@@ -43,7 +56,29 @@ public class ContentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //TODO : Login the guy 
+        
+        String film = request.getParameter("filmName");
+        String data = "";
+        
+        try {
+
+            ResultSet rs = MySQLUtility.doQuery(ACTOR_QUERY, film);
+            
+            if(!rs.next())
+                data = "Sorry... Nothing was found with '" + film + "' as title.";
+            else
+            {
+                rs.previous();
+                while(rs.next())
+                {
+                    data += rs.getString("first_name") + " " + rs.getString("last_name") + "</br>";
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("data", data);
+        request.getRequestDispatcher("/WEB-INF/pages/content.jsp").forward(request, response);
     }
 
     /**

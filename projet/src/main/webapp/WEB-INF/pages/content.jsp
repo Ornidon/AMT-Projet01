@@ -40,12 +40,17 @@
 					</header>
 					<div id="banner">
 						<div class="container">
-							<div class="row">
+							<div class="row" height='800px'>
 								<div class="6u 12u(mobile)">
-
-									<!-- Banner Copy -->
-										<p>This is the landing page, please login or register to access to the content</p>
+                                                                    <h1>ACTOR FINDER!</h1>
+                                                                    Don't be shy! Enter a film name and if i know it i'll give you all his actors.
+                                                                    
+                                                                    <form action="${pageContext.request.contextPath}/content" method="post">
+                                                                        Film's name: <input type="text" name="filmName"><br>
+                                                                        <input type="submit" value="Submit">
+                                                                    </form>
 										
+                                                                    ${data}
 
 								</div>
 								<div class="6u 12u(mobile)">

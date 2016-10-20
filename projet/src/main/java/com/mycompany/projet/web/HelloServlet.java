@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Ornidon
  */
 public class HelloServlet extends HttpServlet {
-
+   
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -29,17 +29,7 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
-
-            ResultSet rs = MySQLUtility.doQuery("SELECT * FROM actors LIMIT 10", null);
-            while(rs.next())
-            {
-                System.out.println(rs.findColumn("first_name"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(HelloServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            
         request.getRequestDispatcher("/WEB-INF/pages/hello.jsp").forward(request, response);
     }
     
