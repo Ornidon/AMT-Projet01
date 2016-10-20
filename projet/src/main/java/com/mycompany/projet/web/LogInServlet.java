@@ -30,6 +30,7 @@ public class LogInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+        request.getSession().setAttribute("logged", new Boolean(true));
     }
 
     /**
@@ -43,7 +44,8 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //TODO : Login the guy 
+        //TODO : check in BDD
+        request.getSession().setAttribute("logged", new Boolean(true));
         
     }
 
