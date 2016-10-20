@@ -1,3 +1,4 @@
+
 package com.mycompany.projet.web;
 
 import java.io.IOException;
@@ -11,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ornidon
  */
-public class HelloServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
-    private String bobo;
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -25,12 +26,10 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        request.getRequestDispatcher("/WEB-INF/pages/hello.jsp").forward(request, response);
+        //todo : logout the guy
     }
-    
-    
+
+
     /**
      * Returns a short description of the servlet.
      *
