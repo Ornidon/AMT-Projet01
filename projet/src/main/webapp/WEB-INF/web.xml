@@ -16,6 +16,10 @@
         <servlet-name>ContentServlet</servlet-name>
         <servlet-class>com.mycompany.projet.web.ContentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.mycompany.projet.web.LogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/hello</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ContentServlet</servlet-name>
         <url-pattern>/content</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

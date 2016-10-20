@@ -35,14 +35,21 @@ public class MySQLUtility {
     public static ResultSet doQuery(String query, Object... args) throws SQLException {
         // Connection with the database if it is not already done
         if (mConnection == null) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MySQLUtility.class.getName()).log(Level.SEVERE, null, ex);
+            }
             mConnection = DriverManager.getConnection(URL);
         }
 
         PreparedStatement stmt = mConnection.prepareStatement(query);
 
         // Insertion if needed of the given parameters
-        for (int i = 0; i < args.length; i++) {
-            stmt.setObject(i + 1, args[i]);
+        if(args != null){
+            for (int i = 0; i < args.length; i++) {
+                stmt.setObject(i + 1, args[i]);
+            }
         }
 
         return stmt.executeQuery();
