@@ -1,8 +1,25 @@
-mysql:
-  image: mysql:8.0
-  ports:
-    - "3306:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: 1234
-  volumes:
-    - ../images/mysql/src:/docker-entrypoint-initdb.d
+version:'2'
+services:
+    mysql:
+        image: mysql:8.0
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+        volumes:
+            - ..\images\mysql\src:/docker-entrypoint-initdb.d
+           
+    glassfish:
+        build: ../image/glassfish
+        ports:
+            - "8080:8080"
+            - "4848:4848"
+            
+    phpmyadmin:
+        build: ../image/phpmyadmin
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+        ports:
+            - "6060:80"
+        links:
+            - mysql:db
