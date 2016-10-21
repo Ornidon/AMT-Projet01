@@ -13,12 +13,11 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author durza
  */
-public class SHA512Util {
-    public static byte[] get_SHA_512_SecurePassword(String passwordToHash, String salt) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        String generatedPassword = null;
+public class SHA256Util {
+
+    public static byte[] get_SHA_256_SecurePassword(String passwordToHash, String salt) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(salt.getBytes("UTF-8"));
-
         return md.digest(passwordToHash.getBytes("UTF-8"));
     }
 }

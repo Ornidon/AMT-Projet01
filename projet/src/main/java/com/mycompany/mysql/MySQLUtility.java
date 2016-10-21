@@ -65,6 +65,11 @@ public class MySQLUtility {
      */
     public static int updateQuery(String query, Object... args) throws SQLException {
         if (mConnection == null) {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MySQLUtility.class.getName()).log(Level.SEVERE, null, ex);
+                }
             mConnection = DriverManager.getConnection(URL);
         }
 

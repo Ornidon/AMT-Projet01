@@ -1,6 +1,6 @@
 package com.mycompany.projet.web;
 
-import com.mycompagny.security.SHA512Util;
+import com.mycompagny.security.SHA256Util;
 import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -55,7 +55,7 @@ public class LogInServlet extends HttpServlet {
         String data = "";
 
         try {
-            ResultSet rs = MySQLUtility.doQuery(USER_QUERY, name, SHA512Util.get_SHA_512_SecurePassword(pass, "rsdetizug"));
+            ResultSet rs = MySQLUtility.doQuery(USER_QUERY, name, SHA256Util.get_SHA_256_SecurePassword(pass, "rsdetizug"));
 
             if (!rs.next()) {
                 data = "Invalid username or password.";
@@ -63,7 +63,7 @@ public class LogInServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             } else {
                 request.getSession().setAttribute("logged", new Boolean(true));
-                request.getRequestDispatcher("/WEB-INF/pages/content.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/content");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContentServlet.class.getName()).log(Level.SEVERE, null, ex);

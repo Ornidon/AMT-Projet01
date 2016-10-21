@@ -1,6 +1,6 @@
 package com.mycompany.projet.web;
 
-import com.mycompagny.security.SHA512Util;
+import com.mycompagny.security.SHA256Util;
 import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,7 +58,7 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("data", data);
                 request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
             } else {
-                MySQLUtility.updateQuery(UPDATE_QUERY, name, SHA512Util.get_SHA_512_SecurePassword(pass, "rsdetizug"));
+                MySQLUtility.updateQuery(UPDATE_QUERY, name, SHA256Util.get_SHA_256_SecurePassword(pass, "rsdetizug"));
                 request.getSession().setAttribute("logged", new Boolean(true));
                 request.getRequestDispatcher("/WEB-INF/pages/content.jsp").forward(request, response);
             }

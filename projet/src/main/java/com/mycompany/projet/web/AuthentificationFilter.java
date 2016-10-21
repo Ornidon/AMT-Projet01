@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ornidon
  */
-@WebFilter(filterName = "AuthentificationFilter", urlPatterns = {"/hzthtzhzt"})
+@WebFilter(filterName = "AuthentificationFilter", urlPatterns = {"/content"})
 public class AuthentificationFilter implements Filter {
     /**
      *
