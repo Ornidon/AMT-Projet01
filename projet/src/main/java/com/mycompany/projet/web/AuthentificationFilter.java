@@ -52,7 +52,8 @@ public class AuthentificationFilter implements Filter {
         if(logged == null){
             rep.sendRedirect(req.getContextPath());
         }
-        chain.doFilter(request, response);
+        else
+            chain.doFilter(request, response);
         
     }
 
