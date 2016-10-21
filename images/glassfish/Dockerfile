@@ -5,6 +5,5 @@ FROM glassfish/server:4.1.1
 
 MAINTAINER Ioannis Noukakis <ioannis.noukakis@heig-vd.ch>
 
-ADD drivers/mysql-connector-java-5.1.39-bin.jar /glassfish4/glassfish/lib/
-ADD target/LandingPageMVCApp-1.1-STUDENT.war /glassfish4/glassfish/domains/domain1/autodeploy/
-ADD target/final.war /glassfish4/glassfish/domains/domain1/autodeploy/
+
+ADD projet-1.0-SNAPSHOT.war /glassfish4/glassfish/domains/domain1/autodeploy/
