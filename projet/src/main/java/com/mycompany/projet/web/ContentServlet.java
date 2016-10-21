@@ -23,12 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ContentServlet extends HttpServlet {
     
-        private final String ACTOR_QUERY = "SELECT first_name, last_name FROM actor\n"
-                                    + "    INNER JOIN film_actor AS fa\n"
-                                    + "        ON actor.actor_id = fa.actor_id\n"
-                                    + "    INNER JOIN film AS f\n"
-                                    + "        ON f.film_id = fa.film_id\n"
-                                    + "    WHERE f.title = ?";
+    private final String ACTOR_QUERY = "SELECT first_name, last_name FROM actor\n"
+                                + "    INNER JOIN film_actor AS fa\n"
+                                + "        ON actor.actor_id = fa.actor_id\n"
+                                + "    INNER JOIN film AS f\n"
+                                + "        ON f.film_id = fa.film_id\n"
+                                + "    WHERE f.title = ?";
     
     /**
      * Handles the HTTP <code>GET</code> method.

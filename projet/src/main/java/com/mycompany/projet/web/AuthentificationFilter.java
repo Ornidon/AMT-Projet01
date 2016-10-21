@@ -6,14 +6,6 @@
 package com.mycompany.projet.web;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -22,15 +14,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 
 /**
  *
  * @author Ornidon
  */
-@WebFilter(filterName = "AuthentificationFilter", urlPatterns = {"/content"})
+@WebFilter(filterName = "AuthentificationFilter", urlPatterns = {"/hzthtzhzt"})
 public class AuthentificationFilter implements Filter {
     /**
      *
@@ -53,8 +43,7 @@ public class AuthentificationFilter implements Filter {
             rep.sendRedirect(req.getContextPath());
         }
         else
-            chain.doFilter(request, response);
-        
+            chain.doFilter(request, response); 
     }
 
     @Override

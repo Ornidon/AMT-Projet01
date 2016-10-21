@@ -24,6 +24,13 @@ USE sakila;
 -- Table structure for table `actor`
 --
 
+CREATE TABLE user (
+  user_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  username VARCHAR(45) NOT NULL,
+  password BLOB NOT NULL,
+  KEY idx_user (user_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE actor (
   actor_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(45) NOT NULL,

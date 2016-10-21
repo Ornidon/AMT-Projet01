@@ -42,11 +42,15 @@
 						<div class="container">
 							<div class="row">
 								<div class="6u 12u(mobile)">
-
-									<!-- Banner Copy -->
-										<p>This is the landing page, please login or register to access to the content</p>
-										
-
+                                                                    <p> 
+                                                                        You must login or <a href="${pageContext.request.contextPath}/register">register</a> in order to access to the service.
+                                                                    </p>
+                                                                    <form action="${pageContext.request.contextPath}/login" method="post">
+                                                                        Username: <input type="text" name="username"><br>
+                                                                        Password : <input type="password" name="password"><br>
+                                                                        <input type="submit" class="button-big" value="Submit">
+                                                                    </form>
+                                                                    <p><font color="red">${data}</font><p>
 								</div>
 								<div class="6u 12u(mobile)">
 

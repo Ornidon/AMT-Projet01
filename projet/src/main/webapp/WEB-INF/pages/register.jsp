@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<title>hello</title>
+		<title>Register</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -42,11 +42,15 @@
 						<div class="container">
 							<div class="row">
 								<div class="6u 12u(mobile)">
-
-									<!-- Banner Copy -->
-										<p>This is the landing page, please login or register to access to the content</p>
-										
-
+                                                                    <p> 
+                                                                        Register
+                                                                    </p>
+                                                                    <form action="${pageContext.request.contextPath}/login" method="post">
+                                                                        Username: <input type="text" name="username"><br>
+                                                                        Password : <input type="password" name="password"><br>
+                                                                        <input type="submit" class="button-big" value="Register">
+                                                                    </form>
+                                                                    <p><font color="red">${data}</font><p>
 								</div>
 								<div class="6u 12u(mobile)">
 

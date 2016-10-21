@@ -1,7 +1,15 @@
 package com.mycompany.projet.web;
 
+import com.mycompagny.security.SHA512Util;
+import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LogInServlet extends HttpServlet {
 
-    
-        
-  
+    private final String USER_QUERY = "SELECT * FROM user WHERE username=? AND password=?";
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -30,7 +36,6 @@ public class LogInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
-        request.getSession().setAttribute("logged", new Boolean(true));
     }
 
     /**
@@ -44,9 +49,31 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //TODO : check in BDD
-        request.getSession().setAttribute("logged", new Boolean(true));
-        
+
+        String name = request.getParameter("username");
+        String pass = request.getParameter("password");
+        String data = "";
+
+        try {
+            ResultSet rs = MySQLUtility.doQuery(USER_QUERY, name, SHA512Util.get_SHA_512_SecurePassword(pass, "rsdetizug"));
+
+            if (!rs.next()) {
+                data = "Invalid username or password.";
+                request.setAttribute("data", data);
+                request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+            } else {
+                request.getSession().setAttribute("logged", new Boolean(true));
+                request.getRequestDispatcher("/WEB-INF/pages/content.jsp").forward(request, response);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -58,5 +85,4 @@ public class LogInServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
 }
