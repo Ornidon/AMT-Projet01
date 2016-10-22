@@ -1,4 +1,4 @@
 FROM mysql:latest
-MAINTAINER Basile Vu <basile.vu@gmail.com>
+MAINTAINER Ioannis Noukakis <ioannis.noukakis@heig-vd.ch>
 
 ADD data/ /docker-entrypoint-initdb.d/
