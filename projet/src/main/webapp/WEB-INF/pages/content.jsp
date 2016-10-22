@@ -43,7 +43,8 @@
                         <div class="row" height='800px'>
                             <div class="6u 12u(mobile)">
                                 <h1>ACTOR FINDER!</h1>
-                                Don't be shy! Enter a film name and if i know it i'll give you all his actors.
+                                Don't be shy! Enter a film name and if i know it i'll give you all his actors
+                                (see the result below).
 
                                 <form action="${pageContext.request.contextPath}/content" method="post">
                                     Film's name: <input type="text" name="filmName"><br>

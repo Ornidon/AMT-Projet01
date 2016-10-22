@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.projet.web;
 
 import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,11 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Ornidon
+ * Servlet serving the application's content.
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class ContentServlet extends HttpServlet {
 
+    //MYSQL query to fetch all actor of a movie.
     private final String ACTOR_QUERY = "SELECT first_name, last_name FROM actor\n"
             + "    INNER JOIN film_actor AS fa\n"
             + "        ON actor.actor_id = fa.actor_id\n"

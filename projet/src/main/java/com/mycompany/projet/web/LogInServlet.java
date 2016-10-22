@@ -4,7 +4,6 @@ import com.mycompagny.security.SHA256Util;
 import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,8 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Ornidon
+ * Servlet handling the login process for our application.
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class LogInServlet extends HttpServlet {
 

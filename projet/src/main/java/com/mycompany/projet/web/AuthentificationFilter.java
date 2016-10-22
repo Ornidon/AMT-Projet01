@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.projet.web;
 
 import java.io.IOException;
@@ -17,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Ornidon
+ * Class implementing a filter for authentification purposes.
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @WebFilter(filterName = "AuthentificationFilter", urlPatterns = {"/content"})
 public class AuthentificationFilter implements Filter {
@@ -40,7 +36,7 @@ public class AuthentificationFilter implements Filter {
         
         Object logged = req.getSession().getAttribute("logged");
         if(logged == null){
-            rep.sendRedirect(req.getContextPath());
+            rep.sendRedirect(req.getContextPath()+"/login");
         }
         else
             chain.doFilter(request, response); 
@@ -55,7 +51,4 @@ public class AuthentificationFilter implements Filter {
     public void destroy() {
         
     }
-
-    
-    
 }

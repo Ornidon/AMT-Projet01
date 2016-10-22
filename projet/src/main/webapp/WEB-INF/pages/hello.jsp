@@ -44,7 +44,7 @@
 								<div class="6u 12u(mobile)">
 
 									<!-- Banner Copy -->
-										<p>This is the landing page, please login or register to access to the content</p>
+										<p>This is the landing page, please <a href="${pageContext.request.contextPath}/login">login</a> or <a href="${pageContext.request.contextPath}/register">register</a> to access to the content</p>
 										
 
 								</div>
@@ -70,10 +70,9 @@
 										<section>
 											<header>
 												<h2>Who We Are</h2>
-												<h3>A gang of bank robber</h3>
 											</header>
 											<p>
-												fodjfdskl
+                                                                                            We are a free service about films.
 											</p>
 										</section>
 
@@ -84,14 +83,10 @@
 										<section>
 											<header>
 												<h2>What We Do</h2>
-												<h3>A subheading about what we do</h3>
 											</header>
 											<ul class="check-list">
-												<li>Sed mattis quis rutrum accum</li>
-												<li>Eu varius nibh suspendisse lorem</li>
-												<li>Magna eget odio amet mollis justo</li>
-												<li>Facilisis quis sagittis mauris</li>
-												<li>Amet tellus gravida lorem ipsum</li>
+												<li>We permit access to a large database of films.</li>
+												<li>You can search for a film and the service will give you its actors.</li>
 											</ul>
 										</section>
 
@@ -106,18 +101,15 @@
 											</header>
 											<ul class="quote-list">
 												<li>
-													<img src="images/pic06.jpg" alt="" />
-													<p>"Neque nisidapibus mattis"</p>
+													<p>"Excelent work."</p>
 													<span>Jane Doe, CEO of UntitledCorp</span>
 												</li>
 												<li>
-													<img src="images/pic07.jpg" alt="" />
-													<p>"Lorem ipsum consequat!"</p>
+													<p>"Outstanding!"</p>
 													<span>John Doe, President of FakeBiz</span>
 												</li>
 												<li>
-													<img src="images/pic08.jpg" alt="" />
-													<p>"Magna veroeros amet tempus"</p>
+													<p>"It's running on glassfish right?"</p>
 													<span>Mary Smith, CFO of UntitledBiz</span>
 												</li>
 											</ul>

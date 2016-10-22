@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.mysql;
 
 import java.sql.Connection;
@@ -17,12 +12,12 @@ import java.util.logging.Logger;
 /**
  * @author Ioannis Noukakis
  * 
- * Class the represents a MYSQL utility to do queries on the specified MYSQL database
+ * Class that does MYSQL queries on the specified MYSQL database
  */
 public class MySQLUtility {
     private static Connection mConnection;
     // The specified MYSQL database (with the user and his password for the connection)
-    private static final String URL = "jdbc:mysql://localhost:3306/sakila?user=root&password=1234";
+    private static final String URL = "jdbc:mysql://0.0.0.0:3306/sakila?user=root&password=1234";
 
     /**
      * Make a SQL SELECT query on the database

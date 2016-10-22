@@ -7,7 +7,7 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: 1234
         volumes:
-            - ..\images\mysql\src:/docker-entrypoint-initdb.d
+            - ../images/mysql/src:/docker-entrypoint-initdb.d
            
     glassfish:
         build: ../images/glassfish
@@ -16,7 +16,7 @@ services:
             - "4848:4848"
             
     phpmyadmin:
-        build: ..\images\phpmyadmin
+        build: ../images/phpmyadmin
         environment:
             MYSQL_ROOT_PASSWORD: 1234
         ports:

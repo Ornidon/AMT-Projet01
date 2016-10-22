@@ -1,16 +1,15 @@
-
 package com.mycompany.projet.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Ornidon
+ * Servlet handling the logout process for our application.
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class LogoutServlet extends HttpServlet {
 
@@ -26,7 +25,8 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //todo : logout the guy
+        request.getSession().setAttribute("logged", null);
+        request.getRequestDispatcher("/WEB-INF/pages/logout.jsp").forward(request, response);
     }
 
 

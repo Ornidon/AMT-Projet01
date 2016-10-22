@@ -3,10 +3,8 @@ package com.mycompany.projet.web;
 import com.mycompagny.security.SHA256Util;
 import com.mycompany.mysql.MySQLUtility;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,8 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Ornidon
+ * Servlet handling the register process for our application.
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class RegisterServlet extends HttpServlet {
     private final String UPDATE_QUERY = "INSERT INTO user (username, password) VALUES (?,?)" ;
@@ -54,10 +53,15 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             if (name.isEmpty() || pass.isEmpty()) {
-                data = "Empty username or password. Please provide valid information.";
+                if(name.isEmpty() && !pass.isEmpty())
+                    data = "You have entered an empty username. Please provide a non empty username.";
+                else if(!name.isEmpty() && pass.isEmpty())
+                    data = "You have entered an empty password. Please provide a non empty password.";
+                else
+                    data = "You have entered an empty username and password. Please provide a non empty username and password.";
                 request.setAttribute("data", data);
                 request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
-            } else {
+            }else {
                 MySQLUtility.updateQuery(UPDATE_QUERY, name, SHA256Util.get_SHA_256_SecurePassword(pass, "rsdetizug"));
                 request.getSession().setAttribute("logged", new Boolean(true));
                 request.getRequestDispatcher("/WEB-INF/pages/content.jsp").forward(request, response);
