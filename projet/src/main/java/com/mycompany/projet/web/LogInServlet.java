@@ -2,6 +2,8 @@ package com.mycompany.projet.web;
 
 import com.mycompagny.security.SHA256Util;
 import com.mycompany.mysql.MySQLUtility;
+import com.mycompany.projet.models.User;
+import com.mycompany.projet.services.UserManager;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -9,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class LogInServlet extends HttpServlet {
-
-    private final String USER_QUERY = "SELECT * FROM user WHERE username=? AND password=?";
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    @EJB
+    UserManager manager;
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -54,25 +57,14 @@ public class LogInServlet extends HttpServlet {
         String pass = request.getParameter("password");
         String data = "";
 
-        try {
-            ResultSet rs = MySQLUtility.doQuery(USER_QUERY, name, SHA256Util.get_SHA_256_SecurePassword(pass, "rsdetizug"));
-
-            if (!rs.next()) {
-                data = "Invalid username or password.";
-                request.setAttribute("data", data);
-                request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
-            } else {
-                request.getSession().setAttribute("logged", new Boolean(true));
-                response.sendRedirect(request.getContextPath() + "/content");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ContentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
+        User user = manager.get(name, pass);
+        if(user == null){
+            data = "Invalid username or password.";
+            request.setAttribute("data", data);
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+        }else{
+            request.getSession().setAttribute("logged", new Boolean(true));
+            response.sendRedirect(request.getContextPath() + "/content");
         }
     }
 

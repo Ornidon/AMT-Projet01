@@ -1,13 +1,12 @@
 version: '2'
 services:
     mysql:
-        image: mysql:8.0
+        build: ../images/mysql
         ports:
             - "3306:3306"
         environment:
             MYSQL_ROOT_PASSWORD: 1234
-        volumes:
-            - ../images/mysql/src:/docker-entrypoint-initdb.d
+   
            
     glassfish:
         build: ../images/glassfish
