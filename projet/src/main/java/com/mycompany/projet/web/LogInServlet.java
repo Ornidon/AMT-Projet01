@@ -56,7 +56,7 @@ public class LogInServlet extends HttpServlet {
             request.setAttribute("data", data);
             request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
         }else{
-            request.getSession().setAttribute("logged", new Boolean(true));
+            request.getSession().setAttribute("logged", user);
             response.sendRedirect(request.getContextPath() + "/content");
         }
     }
