@@ -137,7 +137,7 @@ public class FilmManager implements FilmManagerLocal {
                 for(Actor a : actors){
                     ResultSet rs = QueryExecutor.doQuery(GET_ACTOR_QUERY, a.getFirst_name(), a.getLast_name());
                     if(rs == null || !rs.next()) {
-                        QueryExecutor.doUpdateQuerry(INSERT_ACTOR_IF_NOT_EXIST);
+                        QueryExecutor.doUpdateQuerry(INSERT_ACTOR_IF_NOT_EXIST, a.getFirst_name(), a.getLast_name());
                         ResultSet result = QueryExecutor.doQuery(GET_ACTOR_QUERY, a.getFirst_name(), a.getLast_name());
                         result.next();
                         QueryExecutor.doUpdateQuerry(ADD_ACTOR_TO_FILM, result.getInt("actor_id"), f.getFilm_id());
