@@ -9,8 +9,9 @@ import com.mycompany.projet.models.Actor;
 import java.util.List;
 
 /**
- *
- * @author Ornidon
+ * Model for Film transfer with actors
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class FilmDTO {
     private String title;

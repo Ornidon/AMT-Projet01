@@ -1,8 +1,9 @@
 package com.mycompany.projet.models;
 
 /**
- *
- * @author Ornidon
+ * Model for users
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class User {
     private final String name;

@@ -28,8 +28,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 /**
- *
- * @author Ornidon
+ * Implementation of the rest API
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @Stateless
 @Path("/films")

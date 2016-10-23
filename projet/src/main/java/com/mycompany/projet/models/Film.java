@@ -1,10 +1,9 @@
 package com.mycompany.projet.models;
 
-import java.util.List;
-
 /**
- *
- * @author Ornidon
+ * Model for films
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 public class Film {
     private String title;
