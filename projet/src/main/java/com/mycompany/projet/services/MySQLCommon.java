@@ -38,7 +38,9 @@ public class MySQLCommon {
                     stmt.setObject(i + 1, args[i]);
                 }
             }
-            return stmt.executeQuery();
+            ResultSet tmp =  stmt.executeQuery();
+            endConnect();
+            return tmp;
         } catch (SQLException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,7 +73,7 @@ public class MySQLCommon {
             stmt.executeUpdate();
             // We are looking for the eventual id in the case of an insertion query
             ResultSet keys = stmt.getGeneratedKeys();
-
+            endConnect();
             if (keys.next()) {
                return keys.getInt(1);
             }
