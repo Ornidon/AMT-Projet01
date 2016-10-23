@@ -68,6 +68,6 @@ public class LogInServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "This is login servlet";
     }
 }

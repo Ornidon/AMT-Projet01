@@ -1,5 +1,6 @@
 package com.mycompany.projet.web;
 
+import com.mycompany.projet.models.User;
 import com.mycompany.projet.services.UserManagerLocal;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -66,7 +67,7 @@ public class RegisterServlet extends HttpServlet {
                 else if (result == 0)
                      data = "The user already exists";
                 else{
-                    request.getSession().setAttribute("logged", new Boolean(true));
+                    request.getSession().setAttribute("logged", new User(name, pass, 2));
                     response.sendRedirect(request.getContextPath()+"/content");
                     return;
                 }
@@ -86,6 +87,6 @@ public class RegisterServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "This is http servlet";
     }
 }

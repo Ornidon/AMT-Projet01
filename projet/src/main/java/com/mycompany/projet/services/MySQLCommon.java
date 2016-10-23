@@ -18,8 +18,9 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 /**
- *
- * @author Ornidon
+ * Link with the DB and querry execution
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @Stateless
 public class MySQLCommon {

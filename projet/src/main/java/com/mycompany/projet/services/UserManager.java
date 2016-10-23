@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.projet.services;
 
 import com.mycompagny.security.SHA256Util;
@@ -22,8 +17,9 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 /**
- *
- * @author Ornidon
+ * Implements the communication methods with the Datbase for the Users
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @Stateless
 public class UserManager implements UserManagerLocal {
@@ -36,6 +32,12 @@ public class UserManager implements UserManagerLocal {
     private final String CREATE_USER_QUERY = "INSERT INTO user (username, password) VALUES (?,?)" ;
     
     
+    /**
+     * Create an user on the server
+     * @param username
+     * @param password
+     * @return 
+     */
     @Override
     public int create(String username, String password) {
         ResultSet rs = QueryExecutor.doQuery(GET_USER_WOPWD, username);
@@ -52,6 +54,12 @@ public class UserManager implements UserManagerLocal {
         return 0;
     }
 
+    /**
+     * get an user from the server
+     * @param username
+     * @param password
+     * @return 
+     */
     @Override
     public User get(String username, String password)  {
         

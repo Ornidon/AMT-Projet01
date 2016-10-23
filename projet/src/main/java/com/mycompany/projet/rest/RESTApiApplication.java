@@ -12,9 +12,9 @@ import javax.ws.rs.core.Application;
 
 
 /**
+ * Defining properties for the API
  * 
- *
- * @author Ornidon
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @ApplicationPath("/api")
 public class RESTApiApplication extends Application {

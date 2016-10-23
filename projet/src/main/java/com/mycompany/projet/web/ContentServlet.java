@@ -71,7 +71,7 @@ public class ContentServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "On this servlet you can ask for actors on different films";
     }
 
 }
