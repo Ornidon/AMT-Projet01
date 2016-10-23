@@ -24,7 +24,7 @@ public class FilmManager implements FilmManagerLocal {
     private final String GET_FILM_QUERY = "SELECT title, film_id FROM film WHERE title =?";
     private final String GET_ACTOR_QUERY = "SELECT * FROM actor WHERE first_name =?,last_name = ? ";
     private final String GET_FILMS_QUERY = "SELECT title, film_id FROM film WHERE 1";
-    private final String GET_ACTORS_QUERY = "SELECT first_name, last_name FROM actor\n"
+    private final String GET_ACTORS_QUERY = "SELECT * FROM actor\n"
             + "    INNER JOIN film_actor AS fa\n"
             + "        ON actor.actor_id = fa.actor_id\n"
             + "    INNER JOIN film AS f\n"
@@ -73,10 +73,11 @@ public class FilmManager implements FilmManagerLocal {
     public List<Actor> getActors(String filmTitle) {
         List<Actor> actors = new LinkedList<>();
         ResultSet rs = QueryExecutor.doQuery(GET_ACTORS_QUERY, filmTitle);
-
+        
         try {
-            while (rs.next()) {
+            while (rs != null && rs.next()) {
                 actors.add(new Actor(rs.getString("first_name"), rs.getString("last_name"),rs.getInt("actor_id")));
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(FilmManager.class.getName()).log(Level.SEVERE, null, ex);
