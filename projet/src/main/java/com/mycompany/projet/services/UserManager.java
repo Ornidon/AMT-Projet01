@@ -41,7 +41,7 @@ public class UserManager implements UserManagerLocal {
         ResultSet rs = QueryExecutor.doQuery(GET_USER_WOPWD, username);
         try {
             if(rs != null && rs.next()) return 0;
-            else return QueryExecutor.doUpdateQuerry(CREATE_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password, "rsdetizug"));
+            else return QueryExecutor.doUpdateQuerry(CREATE_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password));
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -57,7 +57,7 @@ public class UserManager implements UserManagerLocal {
         
         User user = null;
         try {
-            ResultSet rs = QueryExecutor.doQuery(GET_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password, "rsdetizug"));
+            ResultSet rs = QueryExecutor.doQuery(GET_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password));
             if (rs.next()) {  
                 user = new User(username, password,  rs.getInt("user_id"));
                 
