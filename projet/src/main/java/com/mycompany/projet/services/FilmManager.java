@@ -38,6 +38,11 @@ public class FilmManager implements FilmManagerLocal {
     private final String DELETE_FILM_QUERY = "DELETE FROM film WHERE title = ?";
     private final String UPDATE_FILM_QUERY = "UPDATE film SET title=? WHERE film_id = ?";
 
+    /**
+     * Get film from the server from an id
+     * @param id the id of the film
+     * @return the chosen film
+     */
     @Override
     public Film getFilm(int id) {
         Film film = null;
@@ -53,6 +58,11 @@ public class FilmManager implements FilmManagerLocal {
         return film;
     }
     
+    /**
+     * Get film from the server from a title
+     * @param title the title of the film
+     * @return the chosen film
+     */
     @Override
     public Film getFilm(String title) {
         Film film = null;
@@ -68,7 +78,11 @@ public class FilmManager implements FilmManagerLocal {
         }
         return film;
     }
-
+    
+    /**
+     * get all films
+     * @return a list of film
+     */
     @Override
     public List<Film> getFilms() {
         List<Film> films = new LinkedList<>();
@@ -86,6 +100,11 @@ public class FilmManager implements FilmManagerLocal {
         return films;
     }
 
+    /**
+     * Get all actors that are playing on the film with filmtitle
+     * @param filmTitle the title of the film we want
+     * @return a list of actor
+     */
     @Override
     public List<Actor> getActors(String filmTitle) {
         List<Actor> actors = new LinkedList<>();
@@ -103,6 +122,11 @@ public class FilmManager implements FilmManagerLocal {
         return actors;
     }
 
+    /**
+     * Create a film, actors and link the on the server
+     * @param title the title of the film
+     * @param actors the list of actor
+     */
     @Override
     public void create(String title, List<Actor> actors) {
         Film f = getFilm(title);
@@ -126,6 +150,11 @@ public class FilmManager implements FilmManagerLocal {
         }else System.out.println("Film already exist");
     }
 
+    /**
+     * change the title of the film f
+     * @param f the film
+     * @param newTitle the new title of the film
+     */
     @Override
     public void update(Film f, String newTitle) {
         try {
@@ -135,6 +164,10 @@ public class FilmManager implements FilmManagerLocal {
         }
     }
 
+    /**
+     * delete the film the the specified title
+     * @param title the specifile title
+     */
     @Override
     public void delete(String title) {
         try {
