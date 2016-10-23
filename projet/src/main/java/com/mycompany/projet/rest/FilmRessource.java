@@ -105,7 +105,7 @@ public class FilmRessource {
         URI href = uriInfo
                 .getBaseUriBuilder()
                 .path(FilmRessource.class)
-                .path(FilmRessource.class, "getFilms")
+                .path(FilmRessource.class, "getActors")
                 .build(filmTitle);
 
         return Response.created(href).build();
@@ -143,8 +143,8 @@ public class FilmRessource {
     @PUT
     @Path("/{title}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(FilmDTO film) {
-        Film f = manager.getFilm(film.getTitle());
+    public Response update(@PathParam(value="title") String title, FilmDTO film) {
+        Film f = manager.getFilm(title);
         if(f == null) {
             return Response
                     .status(404)
@@ -152,7 +152,7 @@ public class FilmRessource {
         }
         else
         {
-            manager.update(f, f.getTitle());
+            manager.update(f, film.getTitle());
             return Response
                     .ok()
                     .build(); 

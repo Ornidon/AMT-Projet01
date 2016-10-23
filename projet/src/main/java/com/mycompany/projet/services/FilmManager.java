@@ -24,7 +24,7 @@ public class FilmManager implements FilmManagerLocal {
 
     private final String GET_FILM_QUERY = "SELECT title, film_id FROM film WHERE title =?";
     private final String GET_FILM_QUERY2 = "SELECT title, film_id FROM film WHERE film_id =?";
-    private final String GET_ACTOR_QUERY = "SELECT * FROM actor WHERE first_name =? AND last_name = ? ";
+    private final String GET_ACTOR_QUERY = "SELECT * FROM actor WHERE first_name = ? AND last_name = ? ";
     private final String GET_FILMS_QUERY = "SELECT title, film_id FROM film WHERE 1";
     private final String GET_ACTORS_QUERY = "SELECT * FROM actor\n"
             + "    INNER JOIN film_actor AS fa\n"
