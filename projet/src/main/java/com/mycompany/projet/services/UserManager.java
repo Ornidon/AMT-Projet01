@@ -60,7 +60,6 @@ public class UserManager implements UserManagerLocal {
             ResultSet rs = QueryExecutor.doQuery(GET_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password, "rsdetizug"));
             if (rs.next()) {  
                 user = new User(username, password,  rs.getInt("user_id"));
-                
             }
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
