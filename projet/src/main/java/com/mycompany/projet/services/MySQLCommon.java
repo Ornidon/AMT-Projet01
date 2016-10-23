@@ -31,7 +31,6 @@ public class MySQLCommon {
         try {
             // Connection with the database
             if(mConnection == null) mConnection = database.getConnection();
-            System.out.println(mConnection.getSchema());
             PreparedStatement stmt = mConnection.prepareStatement(query);
             
             if(args != null){

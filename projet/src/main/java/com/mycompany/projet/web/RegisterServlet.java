@@ -2,12 +2,14 @@ package com.mycompany.projet.web;
 
 import com.mycompagny.security.SHA256Util;
 import com.mycompany.mysql.MySQLUtility;
+import com.mycompany.projet.services.UserManagerLocal;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +20,12 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * @author Ioannis Noukakis & Thibaut Loiseau
  */
+
 public class RegisterServlet extends HttpServlet {
-    private final String UPDATE_QUERY = "INSERT INTO user (username, password) VALUES (?,?)" ;
     
-     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    @EJB
+    UserManagerLocal manager;
+   
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -59,20 +63,22 @@ public class RegisterServlet extends HttpServlet {
                     data = "You have entered an empty password. Please provide a non empty password.";
                 else
                     data = "You have entered an empty username and password. Please provide a non empty username and password.";
-                request.setAttribute("data", data);
-                request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
             }else {
-                MySQLUtility.updateQuery(UPDATE_QUERY, name, SHA256Util.get_SHA_256_SecurePassword(pass, "rsdetizug"));
-                request.getSession().setAttribute("logged", new Boolean(true));
-                request.getRequestDispatcher("/WEB-INF/pages/content.jsp").forward(request, response);
+                int result = manager.create(name, pass);
+                if( result == -1)
+                    data = "A problem has occured, please try later";
+                else if (result == 0)
+                     data = "The user already exists";
+                else{
+                    request.getSession().setAttribute("logged", new Boolean(true));
+                    response.sendRedirect(request.getContextPath()+"/content");
+                    return;
+                }
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("data", data);
+            request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
         }
         catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

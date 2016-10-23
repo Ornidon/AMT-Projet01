@@ -32,13 +32,16 @@ public class UserManager implements UserManagerLocal {
     private MySQLCommon QueryExecutor;
     
     private final String GET_USER_QUERY = "SELECT * FROM user WHERE username=? AND password=?";
+    private final String GET_USER_WOPWD = "SELECT * FROM user WHERE username=? ";
     private final String CREATE_USER_QUERY = "INSERT INTO user (username, password) VALUES (?,?)" ;
     
     
     @Override
-    public void create(String username, String password) {
+    public int create(String username, String password) {
+        ResultSet rs = QueryExecutor.doQuery(GET_USER_WOPWD, username);
         try {
-            QueryExecutor.doUpdateQuerry(CREATE_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password, "rsdetizug"));
+            if(rs != null && rs.next()) return 0;
+            else return QueryExecutor.doUpdateQuerry(CREATE_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password, "rsdetizug"));
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -46,6 +49,7 @@ public class UserManager implements UserManagerLocal {
         } catch (SQLException ex) {
             Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return 0;
     }
 
     @Override
@@ -55,8 +59,7 @@ public class UserManager implements UserManagerLocal {
         try {
             ResultSet rs = QueryExecutor.doQuery(GET_USER_QUERY, username, SHA256Util.get_SHA_256_SecurePassword(password, "rsdetizug"));
             if (rs.next()) {  
-                System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-                user = new User(username, password,  rs.getInt("id"));
+                user = new User(username, password,  rs.getInt("user_id"));
                 
             }
         } catch (UnsupportedEncodingException ex) {

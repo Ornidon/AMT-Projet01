@@ -8,6 +8,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface UserManagerLocal {
-    void create(String username, String password);
+    int create(String username, String password);
     User get(String username, String password); 
 }

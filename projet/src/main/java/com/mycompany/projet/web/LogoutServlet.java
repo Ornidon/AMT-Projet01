@@ -26,7 +26,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getSession().setAttribute("logged", null);
-        request.getRequestDispatcher("/WEB-INF/pages/logout.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath());
     }
 
 
@@ -37,7 +37,7 @@ public class LogoutServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "This is the logout servlet";
     }
 
 }
