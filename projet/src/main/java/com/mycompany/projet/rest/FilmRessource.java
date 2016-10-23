@@ -69,7 +69,6 @@ public class FilmRessource {
      * @return all film and actors plus a status.
      */
     @GET
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFilms(){
         List<FilmDTO> result = new LinkedList<>();
@@ -90,7 +89,6 @@ public class FilmRessource {
      * 
      */
     @POST
-    @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(FilmDTO film) {
         String filmTitle = film.getTitle();
@@ -143,6 +141,7 @@ public class FilmRessource {
      * @return  A status about the modification.
      */
     @PUT
+    @Path("/{title}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(FilmDTO film) {
         Film f = manager.getFilm(film.getTitle());
