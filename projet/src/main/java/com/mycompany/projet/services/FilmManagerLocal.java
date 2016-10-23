@@ -11,8 +11,9 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
- * @author Ornidon
+ * Interface for the communication methods with the Datbase for the Films
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @Local
 public interface FilmManagerLocal {

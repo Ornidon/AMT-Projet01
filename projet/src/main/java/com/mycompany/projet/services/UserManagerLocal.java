@@ -3,8 +3,9 @@ import com.mycompany.projet.models.User;
 import javax.ejb.Local;
 
 /**
- *
- * @author Ornidon
+ * Interface for the communication methods with the Datbase for the Users
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @Local
 public interface UserManagerLocal {

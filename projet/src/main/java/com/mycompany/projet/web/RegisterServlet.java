@@ -87,6 +87,6 @@ public class RegisterServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "This is http servlet";
     }
 }

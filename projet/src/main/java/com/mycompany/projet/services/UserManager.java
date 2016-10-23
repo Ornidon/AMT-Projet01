@@ -22,8 +22,9 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 /**
- *
- * @author Ornidon
+ * Implements the communication methods with the Datbase for the Users
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @Stateless
 public class UserManager implements UserManagerLocal {

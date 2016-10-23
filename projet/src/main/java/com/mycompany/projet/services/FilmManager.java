@@ -12,8 +12,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
- *
- * @author Ornidon
+ * Implements the communication methods with the Datbase for the Films
+ * 
+ * @author Ioannis Noukakis & Thibaut Loiseau
  */
 @Stateless
 public class FilmManager implements FilmManagerLocal {
