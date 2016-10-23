@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/hello</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
@@ -46,6 +46,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/hello</welcome-file>
-    </welcome-file-list>         
+        <welcome-file>hello</welcome-file>
+    </welcome-file-list>
 </web-app>
