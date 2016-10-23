@@ -1,12 +1,8 @@
 package com.mycompany.projet.web;
 
-import com.mycompagny.security.SHA256Util;
-import com.mycompany.mysql.MySQLUtility;
 import com.mycompany.projet.services.UserManagerLocal;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
