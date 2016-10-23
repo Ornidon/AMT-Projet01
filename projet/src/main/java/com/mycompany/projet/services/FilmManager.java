@@ -171,7 +171,9 @@ public class FilmManager implements FilmManagerLocal {
     @Override
     public void delete(String title) {
         try {
+            QueryExecutor.doQuery("SET FOREIGN_KEY_CHECKS=0", null);
             QueryExecutor.doUpdateQuerry(DELETE_FILM_QUERY, title);
+            QueryExecutor.doQuery("SET FOREIGN_KEY_CHECKS=1", null);
         } catch (SQLException ex) {
             Logger.getLogger(FilmManager.class.getName()).log(Level.SEVERE, null, ex);
         }
