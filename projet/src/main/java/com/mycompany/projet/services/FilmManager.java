@@ -22,6 +22,7 @@ public class FilmManager implements FilmManagerLocal {
     private MySQLCommon QueryExecutor;
 
     private final String GET_FILM_QUERY = "SELECT title, film_id FROM film WHERE title =?";
+    private final String GET_FILM_QUERY2 = "SELECT title, film_id FROM film WHERE film_id =?";
     private final String GET_ACTOR_QUERY = "SELECT * FROM actor WHERE first_name =?,last_name = ? ";
     private final String GET_FILMS_QUERY = "SELECT title, film_id FROM film WHERE 1";
     private final String GET_ACTORS_QUERY = "SELECT * FROM actor\n"
@@ -34,8 +35,23 @@ public class FilmManager implements FilmManagerLocal {
     private final String ADD_ACTOR_TO_FILM = "INSERT INTO film_actor (actor_id, film_id) VALUES (? , ?)";
     private final String INSERT_ACTOR_IF_NOT_EXIST = "INSERT INTO actor (first_name, last_name) VALUES (? , ?)";
     private final String DELETE_FILM_QUERY = "DELETE FROM film WHERE title = ?";
-    private final String UPDATE_FILM_QUERY = "UPDATE film SET title=? WHERE title = ?";
+    private final String UPDATE_FILM_QUERY = "UPDATE film SET title=? WHERE film_id = ?";
 
+    @Override
+    public Film getFilm(int id) {
+        Film film = null;
+        ResultSet rs = QueryExecutor.doQuery(GET_FILM_QUERY2, id);
+        try {
+            if (rs.next()) {
+                film = new Film(rs.getString("title"), rs.getInt("film_id"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmManager.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return film;
+    }
+    
     @Override
     public Film getFilm(String title) {
         Film film = null;
@@ -87,12 +103,12 @@ public class FilmManager implements FilmManagerLocal {
     }
 
     @Override
-    public void create(Film film, List<Actor> actors) {
-        Film f = getFilm(film.getTitle());
+    public void create(String title, List<Actor> actors) {
+        Film f = getFilm(title);
         if(f == null){
             try {
-                QueryExecutor.doUpdateQuerry(CREATE_FILM_QUERY);
-                
+                QueryExecutor.doUpdateQuerry(CREATE_FILM_QUERY, title);
+                f = getFilm(title);
                 for(Actor a : actors){
                     ResultSet rs = QueryExecutor.doQuery(GET_ACTOR_QUERY, a.getFirst_name(), a.getLast_name());
                     if(rs == null || !rs.next()) {
@@ -112,7 +128,7 @@ public class FilmManager implements FilmManagerLocal {
     @Override
     public void update(Film f, String newTitle) {
         try {
-            QueryExecutor.doUpdateQuerry(UPDATE_FILM_QUERY, newTitle, f.getTitle());
+            QueryExecutor.doUpdateQuerry(UPDATE_FILM_QUERY, newTitle, f.getFilm_id());
                     } catch (SQLException ex) {
             Logger.getLogger(FilmManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -126,5 +142,7 @@ public class FilmManager implements FilmManagerLocal {
             Logger.getLogger(FilmManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 
 }

@@ -18,9 +18,10 @@ import javax.ejb.Local;
 public interface FilmManagerLocal {
     
     Film getFilm(String title);
+    Film getFilm(int id);
     List<Film> getFilms();
     List<Actor> getActors(String filmTitle);
-    void create(Film film, List<Actor> actors);
+    void create(String title, List<Actor> actors);
     void update(Film f, String newTitle);
     void delete(String title);
 }
