@@ -14,22 +14,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 /**
  *
  * @author Ornidon
  */
-@Singleton
+@Stateless
 public class MySQLCommon {
     @Resource(lookup = "jdbc/sakila")
     DataSource database;
-    private Connection mConnection;
+    private Connection mConnection = null;
     
     public ResultSet doQuery(String query, Object... args) {
         try {
             // Connection with the database
             if(mConnection == null) mConnection = database.getConnection();
+            System.out.println(mConnection.getSchema());
             PreparedStatement stmt = mConnection.prepareStatement(query);
             
             if(args != null){

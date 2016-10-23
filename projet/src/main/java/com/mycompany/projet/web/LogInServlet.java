@@ -4,6 +4,7 @@ import com.mycompagny.security.SHA256Util;
 import com.mycompany.mysql.MySQLUtility;
 import com.mycompany.projet.models.User;
 import com.mycompany.projet.services.UserManager;
+import com.mycompany.projet.services.UserManagerLocal;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -24,8 +25,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LogInServlet extends HttpServlet {
     
+    
     @EJB
-    UserManager manager;
+    UserManagerLocal manager;
     
     /**
      * Handles the HTTP <code>GET</code> method.
