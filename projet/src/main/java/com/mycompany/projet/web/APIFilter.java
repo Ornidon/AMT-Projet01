@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author durza
  */
-@WebFilter(filterName = "APIFilter", urlPatterns = {"/api"})
+@WebFilter(filterName = "APIFilter", urlPatterns = {"/ewsa"})
 public class APIFilter implements Filter {
     
     private final int ADMIN_ID = 1;
