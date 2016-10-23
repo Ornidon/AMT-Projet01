@@ -10,7 +10,9 @@ You can also access to the REST API with the specified commands.
 
 # SETUP and DEPLOY
 
-Only 2 steps :
+WARNING : You will need Maven and docker to deploy this app.
+
+Then only 2 steps to setup :
  -Clone the repo
  -Run the .sh
 
