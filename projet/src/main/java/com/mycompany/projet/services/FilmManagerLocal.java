@@ -5,10 +5,13 @@
  */
 package com.mycompany.projet.services;
 
+import javax.ejb.Local;
+
 /**
  *
  * @author Ornidon
  */
-public class FilmManagerLocal {
+@Local
+public interface FilmManagerLocal {
     
 }
