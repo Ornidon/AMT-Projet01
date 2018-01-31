@@ -1,4 +1,4 @@
-# AMT-Projet01
+# Film_API_AMT
 
 Welcome to the Java EE application for AMT teaching at HEIG-VD.
 
